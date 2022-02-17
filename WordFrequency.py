@@ -1,25 +1,27 @@
 #Read the contents of the AI.txt file 
 infile = open("AI.txt", "r")
 
-words = infile.readline()
+words = infile.read()
 words = words.lower()
 
+#Group the characters to be removed and replace with whitespace
 special_char = [',', '!', '.', '@', '#', ':', ';', '?', '(', ')', '-', '"']
 special_char = str(special_char)
 
-#Create dictionary for the individual words 
-wordfreq = {}
-
-for x in special_char:
-    words = words.replace(x, ' ')
+for index in special_char:
+    words = words.replace(index, ' ')
 words = words.split()
-words = words.lower()
 
+#Create a list to track word count 
 wordlist = []
 
 for key in words:
     wordlist.append(key)
 
+#Create a dictionary for the individual words 
+wordfreq = {}
+
+#Initialize or increase counter if word is present in the dictionary 
 for word in words:
     if word in wordfreq:
         counter = wordlist.count(word)
@@ -27,5 +29,6 @@ for word in words:
     else:
         wordfreq[word] = 1 
 
+#Display word count for each individual word 
 for key in list(wordfreq.keys()):
     print(key, ": ", wordfreq[key], sep = '')
