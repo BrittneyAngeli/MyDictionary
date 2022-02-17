@@ -16,7 +16,8 @@ room-number,use,sq-ft,price
 '''
 
 
-
+#medical is a key and datastore has only one key 
+# it's a list of dictionaries 
 
 datastore = { "medical":[
       { "room-number": 100,
@@ -47,3 +48,19 @@ datastore = { "medical":[
 
       ]
 }
+
+outfile = open('retail_space.csv', 'w')
+outfile.write('room-number, use, sq-ft, price\n')
+
+#print(type(datastore["medical"]))
+#print(datastore["medical"])
+#it'll give us a list of 5 dictionaries
+#we know this because there are curly brackets 
+
+# l is the iterator that goes through each dictionary in this list 
+for l in datastore["medical"]:
+  outfile.write(str(l['room-number']) + ',' + 
+  l["use"] + "," + str(l["sq-ft"]) + "," + 
+  str(l["price"]) + '\n')
+
+outfile.close()
